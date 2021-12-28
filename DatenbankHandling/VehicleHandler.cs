@@ -33,7 +33,7 @@ namespace GVRPALTV.DatenbankHandling
         public bool locked { get; set; }
         public int health { get; set; }
 
-        public async Task LoadAllVehiclesFromDb()
+        public static async Task LoadAllVehiclesFromDb()
         {
             using MySQLHandler db = new MySQLHandler();
             foreach (var veh in db.VehicleHandler)

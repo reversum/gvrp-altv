@@ -72,6 +72,7 @@ namespace GVRPALTV
 
             BlipHandler.LoadAllBlipsFromDb();
             LoadWorkingModule.LoadAllWorkingModules();
+            VehicleHandler.LoadAllVehiclesFromDb();
 
             Timer timeSyncTimer = new Timer();
             timeSyncTimer.Interval = 60000;

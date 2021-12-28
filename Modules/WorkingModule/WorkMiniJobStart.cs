@@ -34,7 +34,6 @@ namespace GVRPALTV.Modules.WorkingModule
                     await player.minijobblip.RemoveAsync();
                      player.minijobmarker.Destroy();
                     AltInteractions.RemoveInteraction(interaction); 
-                    //SSS
                     if (player.minijobcount < player.minijobmax)
                     {
                         await BurgerShotLivery.ChooseRoute(player);

@@ -1,0 +1,17 @@
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\bin\Release\net5.0\GVRPALTV.deps.json
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\bin\Release\net5.0\GVRPALTV.dll
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\bin\Release\net5.0\ref\GVRPALTV.dll
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\bin\Release\net5.0\GVRPALTV.pdb
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\GVRPALTV.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\GVRPALTV.AssemblyInfoInputs.cache
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\GVRPALTV.AssemblyInfo.cs
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\GVRPALTV.csproj.CoreCompileInputs.cache
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\GVRPALTV.dll
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\ref\GVRPALTV.dll
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\GVRPALTV.pdb
+C:\Users\paypa\Desktop\Altvxd\resources\gvrp\net5.0\GVRPALTV.deps.json
+C:\Users\paypa\Desktop\Altvxd\resources\gvrp\net5.0\GVRPALTV.dll
+C:\Users\paypa\Desktop\Altvxd\resources\gvrp\net5.0\ref\GVRPALTV.dll
+C:\Users\paypa\Desktop\Altvxd\resources\gvrp\net5.0\GVRPALTV.pdb
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\GVRPALTV.csproj.CopyComplete
+C:\Users\paypa\source\repos\GVRPALTV\GVRPALTV\obj\Release\net5.0\GVRPALTV.csproj.AssemblyReference.cache

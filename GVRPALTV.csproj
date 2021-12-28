@@ -1,0 +1,117 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <OutputPath>C:\Users\paypa\Desktop\Altvxd\resources\gvrp\</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <OutputPath>C:\Users\paypa\Desktop\Altvxd\resources\gvrp\</OutputPath>
+    </PropertyGroup>
+
+    <!--This copies the publish directory to the resource folder which is named "my-server"-->
+    
+    <ItemGroup>
+        <AllOutputFiles Include="$(OutputPath)\publish\*.*" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="System.Console" Version="4.3.1" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Reference Include="AltV.Net">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\AltV.Net.dll</HintPath>
+      </Reference>
+      <Reference Include="AltV.Net.Async">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\AltV.Net.Async.dll</HintPath>
+      </Reference>
+      <Reference Include="AltV.Net.EntitySync">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\AltV.Net.EntitySync.dll</HintPath>
+      </Reference>
+      <Reference Include="AltV.Net.EntitySync.ServerEvent">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\AltV.Net.EntitySync.ServerEvent.dll</HintPath>
+      </Reference>
+      <Reference Include="AltV.Net.Interactions">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\AltV.Net.Interactions.dll</HintPath>
+      </Reference>
+      <Reference Include="AltV.Net.Resources.Chat.Api">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\AltV.Net.Resources.Chat.Api.dll</HintPath>
+      </Reference>
+      <Reference Include="Humanizer">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Humanizer.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.EntityFrameworkCore">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.EntityFrameworkCore.Abstractions">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.EntityFrameworkCore.Design">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.EntityFrameworkCore.Relational">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Caching.Abstractions">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Caching.Memory">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.DependencyInjection">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Logging">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.Logging.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Options">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.Options.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Primitives">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      </Reference>
+      <Reference Include="MySqlConnector">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\MySqlConnector.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="Pomelo.EntityFrameworkCore.MySql">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Pomelo.EntityFrameworkCore.MySql.dll</HintPath>
+      </Reference>
+      <Reference Include="System.Diagnostics.DiagnosticSource">
+        <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Modules\Customization\" />
+    </ItemGroup>
+
+    <Target Name="CopyFiles" AfterTargets="publish">
+        <PropertyGroup>
+            <CopiedFiles>$(OutputPath)\publish\*.*</CopiedFiles>
+
+            <TargetLocation Condition=" '$(Configuration)' == 'Release' ">../../my-server/</TargetLocation>
+        </PropertyGroup>
+        <Copy Condition=" '$(TargetLocation)' != '' " SourceFiles="@(AllOutputFiles)" DestinationFolder="$(TargetLocation)" SkipUnchangedFiles="false" />
+    </Target>
+
+</Project>
+
+
+

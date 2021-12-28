@@ -26,6 +26,7 @@ namespace GVRPALTV.DatenbankHandling
        // public virtual DbSet<ItemHandler> ItemHandler { get; set; }
         public virtual DbSet<BlipHandler> BlipHandler { get; set; }
         public virtual DbSet<VehicleHandler> VehicleHandler { get; set; }
+        public virtual DbSet<MiniJobDeliveryHandler> MiniJobDeliveryHandler { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -168,6 +169,21 @@ namespace GVRPALTV.DatenbankHandling
                 entity.Property(e => e.engine).HasColumnName("engine");
                 entity.Property(e => e.locked).HasColumnName("locked");
                 entity.Property(e => e.health).HasColumnName("health");
+
+
+
+
+            });
+            modelBuilder.Entity<MiniJobDeliveryHandler>(entity =>
+            {
+                entity.ToTable("minijobs_deliverypoints");
+
+                entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.jobname).HasColumnName("jobname").HasMaxLength(255);
+                entity.Property(e => e.pos_x).HasColumnName("pos_x");
+                entity.Property(e => e.pos_y).HasColumnName("pos_y");
+                entity.Property(e => e.pos_z).HasColumnName("pos_z");
+    
 
 
 

@@ -31,7 +31,7 @@ namespace GVRPALTV.Modules.WorkingModule
                     player.minijobcount += 1;
                     await player.ShowAdvancedNotification("~g~Lieferung erfolgreich!~n~~s~Trinkgeld: ~y~ " + trinkgeld + "$~n~Schicht: ~b~" + player.minijobcount + "~s~/~r~" + player.minijobmax, 0, "Burger-Shot", "Job-Benachrichtigung", "CHAR_MOLLY", null, 1);
                     player.money += trinkgeld;
-                    await player.minijobblip.RemoveAsync();
+                     player.minijobblip.Remove();
                      player.minijobmarker.Destroy();
                     AltInteractions.RemoveInteraction(interaction); 
                     if (player.minijobcount < player.minijobmax)

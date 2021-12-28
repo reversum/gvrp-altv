@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using GVRPALTV.Utils;
 using System.Drawing;
 using GVRPALTV.EntitySync;
+using GVRPALTV.DatenbankHandling;
 
 namespace GVRPALTV.Modules.WorkingModule.BurgerShot
 {
@@ -46,21 +47,20 @@ namespace GVRPALTV.Modules.WorkingModule.BurgerShot
         {
             Position lieferung;
 
-            Random rnd = new Random();
-            int ort = rnd.Next(1, 1);
-            switch (ort)
-            {
-                case 1:
-                    lieferung = new Position((float)-935.644, (float)-1523.0637, (float)4.2351074);
-                    await CreateRoute(player, lieferung);
+            using MySQLHandler db = new MySQLHandler();
+            Random random = new Random();
+            int ss = random.Next(1, 13);
+            var result = db.MiniJobDeliveryHandler
+                                  .Where(c => c.jobname == player.currentminijob)
+
+                                  .OrderBy(c => Guid.NewGuid())
+                                  .Skip(ss).FirstOrDefault();
+
+           await CreateRoute(player, new Position(result.pos_x, result.pos_y, result.pos_z));
 
 
-                    break;
-                case 2:
-                    break;
-            }
         }
-            public static async Task CreateRoute(DBPlayer player, Position position)
+        public static async Task CreateRoute(DBPlayer player, Position position)
         {
             AltInteractions.AddInteraction(new Interaction(1, 1, position, 0, 1));
             var blip = player.Server.CreateBlip(player, 4, position);

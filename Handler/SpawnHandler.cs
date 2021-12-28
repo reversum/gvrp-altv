@@ -64,7 +64,6 @@ namespace GVRPALTV.Handler
             player.Dimension = 0;
             await Task.Delay(100);
 
-            player.Emit("loadallblips", BlipHandler.GetAllServerBlipsInJson());
 
             if (player.bewusstlos)
             {

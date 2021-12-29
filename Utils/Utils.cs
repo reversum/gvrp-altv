@@ -12,11 +12,11 @@ namespace GVRPALTV.Utils
             return currentPosition.Distance(otherPosition) <= distance;
         }
 
-        public static ulong GetVehicleId(this IVehicle vehicle)
+        public static int GetVehicleId(this IVehicle vehicle)
         {
             var myVehicle = (DBVehicle)vehicle;
             if (myVehicle == null || !myVehicle.Exists) return 0;
-            return (ulong)myVehicle.id;
+            return (int)myVehicle.id;
         }
 
         public static bool HasVehicleId(this IVehicle vehicle)
@@ -32,11 +32,11 @@ namespace GVRPALTV.Utils
             if (myVehicle == null || !myVehicle.Exists) return;
             myVehicle.id = (int)vehicleId;
         }
-        public static ulong GetVehicleOwner(this IVehicle vehicle)
+        public static int GetVehicleOwner(this IVehicle vehicle)
         {
             var myVehicle = (DBVehicle)vehicle;
             if (myVehicle == null || !myVehicle.Exists) return 0;
-            return (ulong)myVehicle.ownerid;
+            return (int)myVehicle.ownerid;
         }
 
         public static bool HasVehicleOwner(this IVehicle vehicle)

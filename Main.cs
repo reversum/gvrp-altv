@@ -74,6 +74,10 @@ namespace GVRPALTV
             LoadWorkingModule.LoadAllWorkingModules();
             VehicleHandler.LoadAllVehiclesFromDb();
 
+            Timer timeVehicleTimer = new Timer();
+            timeVehicleTimer.Interval = 30000;
+            timeVehicleTimer.Elapsed += VehicleTimer.OnVehicleTimer;
+            timeVehicleTimer.Start();
             Timer timeSyncTimer = new Timer();
             timeSyncTimer.Interval = 60000;
             timeSyncTimer.Elapsed += PlayerTimer.OnTimeSyncTimer;
@@ -123,8 +127,7 @@ namespace GVRPALTV
                     Console.WriteLine("Fehler! Diesen Benutzer gibt es nicht! | " + user.SocialClubId);
                     return;
                 }
-                dbPlayer.id = user.accountid;
-                dbPlayer.forumid = user.forumid;
+                 dbPlayer.forumid = user.forumid;
                 dbPlayer.name = user.name;
                 dbPlayer.adminlevel = user.adminlevel;
                 dbPlayer.socialclub = user.socialclub;

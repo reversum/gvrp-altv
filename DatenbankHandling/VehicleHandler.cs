@@ -38,8 +38,11 @@ namespace GVRPALTV.DatenbankHandling
             using MySQLHandler db = new MySQLHandler();
             foreach (var veh in db.VehicleHandler)
             {
+
                 var spawnableVehicle = await AltAsync.Do(() => Alt.CreateVehicle((uint)veh.hash, new AltV.Net.Data.Position(veh.pos_X, veh.pos_Y, veh.pos_Z), new Rotation(0, 0, veh.rotation)));
+
                 spawnableVehicle.NumberplateText = veh.plate;
+
                 spawnableVehicle.SetVehicleOwner(veh.ownerid);
                 spawnableVehicle.SetVehicleId(veh.id);
                 if (veh.engine)
@@ -59,20 +62,52 @@ namespace GVRPALTV.DatenbankHandling
                     spawnableVehicle.LockState = AltV.Net.Enums.VehicleLockState.Unlocked;
 
                 }
+                foreach (var fahrzeug in GetAllVehicles())
+                {
+
+                    if (fahrzeug.id == veh.id)
+                    {
+                        fahrzeug.id = veh.id;
+                        fahrzeug.name = veh.name;
+                        fahrzeug.plate = veh.plate;
+                        fahrzeug.hash = veh.hash;
+                        fahrzeug.price = veh.price;
+                        fahrzeug.trunk = veh.trunk;
+                        fahrzeug.trunkweight = veh.trunkweight;
+                        fahrzeug.MaxFuel = veh.MaxFuel;
+                        fahrzeug.pos_X = veh.pos_X;
+                        fahrzeug.pos_Y = veh.pos_Y;
+                        fahrzeug.pos_Z = veh.pos_Z;
+                        fahrzeug.rotation = veh.rotation;
+                        fahrzeug.tuning = veh.tuning;
+                        fahrzeug.engine = veh.engine;
+                        fahrzeug.locked = veh.locked;
+                        fahrzeug.health = veh.health;
+                    }
+                }
+
             }
+        }
+        public static IEnumerable<DBVehicle> GetAllVehicles()
+        {
+            return Alt.GetAllVehicles().Cast<DBVehicle>();
         }
         [AsyncClientEvent("Pressed_G")]
         public async Task Pressed_G(DBPlayer player, DBVehicle vehicle)
         {
-            if(vehicle.GetVehicleOwner() != player.Id) { return; }
-            vehicle.locked = !vehicle.locked;
-            if (vehicle.locked)
+
+            if(vehicle.GetVehicleOwner() != player.accountid) { return; }
+            if (!vehicle.locked)
             {
+                vehicle.locked = true;
+
                 vehicle.LockState = AltV.Net.Enums.VehicleLockState.Locked;
                 await player.ShowNotification("Du hast dein Fahrzeug ~r~abgeschlossen~s~.");
             }
             else
             {
+                vehicle.locked = false;
+
                 vehicle.LockState = AltV.Net.Enums.VehicleLockState.Unlocked;
                 await player.ShowNotification("Du hast dein Fahrzeug ~g~aufgeschlossen~s~.");
 

@@ -31,7 +31,7 @@ namespace GVRPALTV.Modules.WorkingModule.BurgerShot
 
             var spawnableVehicle = await AltAsync.Do(() => Alt.CreateVehicle(Alt.Hash("faggio2"), new AltV.Net.Data.Position((float)-1175.3671, (float)-883.978, (float)13.9296875), new Rotation(0, 0, (float)0.64)));
             spawnableVehicle.NumberplateText = "FOOD";
-            spawnableVehicle.SetVehicleOwner(player.Id);
+            spawnableVehicle.SetVehicleOwner(player.accountid);
             spawnableVehicle.SetVehicleId(0);
 
             spawnableVehicle.EngineOn = false;
@@ -49,7 +49,7 @@ namespace GVRPALTV.Modules.WorkingModule.BurgerShot
 
             using MySQLHandler db = new MySQLHandler();
             Random random = new Random();
-            int ss = random.Next(1, 13);
+            int ss = random.Next(1, 14);
             var result = db.MiniJobDeliveryHandler
                                   .Where(c => c.jobname == player.currentminijob)
 

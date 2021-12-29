@@ -26,6 +26,7 @@ namespace GVRPALTV.Modules.WorkingModule
             {
                 if (interaction.Type == 1 && interaction.Id == 1)
                 {
+                    Console.WriteLine("NEEE");
                     Random rnd = new Random();
                     int trinkgeld = rnd.Next(1, 10);
                     player.minijobcount += 1;

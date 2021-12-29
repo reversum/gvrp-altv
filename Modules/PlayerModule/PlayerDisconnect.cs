@@ -26,7 +26,7 @@ namespace GVRPALTV.Modules.PlayerModule
                     Console.WriteLine("Fehler! Diesen Benutzer gibt es nicht! | " + user.SocialClubId);
                     return;
                 }
-                dbPlayer.id = user.accountid;
+            //    dbPlayer.id = user.accountid;
                 dbPlayer.forumid = user.forumid;
                 dbPlayer.name = user.name;
                 dbPlayer.adminlevel = user.adminlevel;

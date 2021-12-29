@@ -11,6 +11,8 @@ namespace GVRPALTV.VehicleHandling
     {
         public int id { get; set; }
         public int ownerid { get; set; }
+
+        public ushort entityid { get; set; }
         public string plate { get; set; }
         public string name { get; set; }
         public ulong hash { get; set; }
@@ -23,8 +25,8 @@ namespace GVRPALTV.VehicleHandling
         public float pos_Z { get; set; }
         public float rotation { get; set; }
         public string tuning { get; set; }
-        public bool engine { get; set; } = false;
-        public bool locked { get; set; } = true;
+        public bool engine { get; set; } 
+        public bool locked { get; set; } 
         public int health { get; set; }
 
         public DBVehicle(IServer server, IntPtr nativePointer, ushort id) : base(server, nativePointer, id)

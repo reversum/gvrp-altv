@@ -38,7 +38,7 @@ namespace GVRPALTV.DatenbankHandling
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasCharSet("utf8mb4")
-                .UseCollation("utf8mb4_0900_ai_ci");
+                .UseCollation("utf8mb4_general_ci");
 
             modelBuilder.Entity<PlayerCharacter>(entity =>
             {

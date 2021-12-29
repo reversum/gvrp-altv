@@ -1,6 +1,7 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
+using GVRPALTV.DatenbankHandling;
 using GVRPALTV.Modules.DeathModule;
 using GVRPALTV.PlayerHandling;
 using System;
@@ -34,6 +35,14 @@ namespace GVRPALTV.Modules.ChatModule
             {
                 await player.GiveWeaponAsync(453432689, 9999, true);
                 player.Emit("idgun");
+            }
+            if (cmd[0] == "/createmak")
+            {
+                using MySQLHandler db = new MySQLHandler();
+
+                db.MiniJobDeliveryHandler.AddRange(new MiniJobDeliveryHandler { jobname = cmd[1], pos_x = player.Position.X, pos_y = player.Position.Y, pos_z = player.Position.Z - 1});
+
+                db.SaveChanges();
             }
             if (cmd[0] == "/revive")
               {

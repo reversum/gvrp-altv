@@ -17,6 +17,7 @@ namespace GVRPALTV.Modules.WorkingModule
         {
             //Position(x: -1178,6505, y: -891,6528, z: 13,744385)
             AltInteractions.AddInteraction(new Interaction(0, 31, new Vector3(-1178, -891, 13), 0, 3)); //Burgershot
+            AltInteractions.AddInteraction(new Interaction(0, 32, new Vector3(-321, -1545, 31), 0, 3)); //Muellmann
 
 
         }

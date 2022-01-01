@@ -100,7 +100,6 @@
     
     <ItemGroup>
       <Folder Include="Modules\Customization\" />
-      <Folder Include="Modules\WorkingModule\Muellmann\" />
     </ItemGroup>
 
     <Target Name="CopyFiles" AfterTargets="publish">

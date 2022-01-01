@@ -16,8 +16,9 @@ namespace GVRPALTV.Modules.PlayerModule
         public async Task PlayerDisconne(DBPlayer user, string reason)
         {
 
-
-            await using MySQLHandler db = new MySQLHandler();
+            if (user.loggedin)
+            {
+                await using MySQLHandler db = new MySQLHandler();
 
 
                 var dbPlayer = db.PlayerCharacter.ToList().FirstOrDefault(account => (account.socialclub == user.SocialClubId));
@@ -26,7 +27,7 @@ namespace GVRPALTV.Modules.PlayerModule
                     Console.WriteLine("Fehler! Diesen Benutzer gibt es nicht! | " + user.SocialClubId);
                     return;
                 }
-            //    dbPlayer.id = user.accountid;
+                //    dbPlayer.id = user.accountid;
                 dbPlayer.forumid = user.forumid;
                 dbPlayer.name = user.name;
                 dbPlayer.adminlevel = user.adminlevel;
@@ -63,10 +64,14 @@ namespace GVRPALTV.Modules.PlayerModule
                 dbPlayer.pos_X = user.pos_X;
                 dbPlayer.pos_Y = user.pos_Y;
                 dbPlayer.pos_Z = user.pos_Z;
+
+                dbPlayer.clothes = user.clothes;
+                dbPlayer.restclothes = user.restclothes;
                 Alt.Log($"[Player Saved] {user.firstname}_{user.lastname}");
 
 
-            await db.SaveChangesAsync();
+                await db.SaveChangesAsync();
+            }
         }
 
     }

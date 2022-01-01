@@ -23,16 +23,19 @@ namespace GVRPALTV.DatenbankHandling
         public virtual DbSet<PlayerCharacter> PlayerCharacter { get; set; }
         public virtual DbSet<PlayerHouse> PlayerHouse { get; set; }
         public virtual DbSet<Gerichte> Gerichte { get; set; }
-       // public virtual DbSet<ItemHandler> ItemHandler { get; set; }
+        public virtual DbSet<ItemHandler> ItemHandler { get; set; }
         public virtual DbSet<BlipHandler> BlipHandler { get; set; }
         public virtual DbSet<VehicleHandler> VehicleHandler { get; set; }
         public virtual DbSet<MiniJobDeliveryHandler> MiniJobDeliveryHandler { get; set; }
+        public virtual DbSet<GarageHandler> GarageHandler { get; set; }
+        public virtual DbSet<KleidungsladenHandler> KleidungsladenHandler { get; set; }
+        public virtual DbSet<SupermarketHandler> SupermarketHandler { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("server=localhost;database=altv;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.22-mysql"));
+                optionsBuilder.UseMySql("server=localhost;database=altv;user=root;ConvertZeroDateTime=True", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.22-mysql"));
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -169,6 +172,8 @@ namespace GVRPALTV.DatenbankHandling
                 entity.Property(e => e.engine).HasColumnName("engine");
                 entity.Property(e => e.locked).HasColumnName("locked");
                 entity.Property(e => e.health).HasColumnName("health");
+                entity.Property(e => e.ingarage).HasColumnName("ingarage");
+                entity.Property(e => e.angemeldet).HasColumnName("angemeldet");
 
 
 
@@ -189,6 +194,79 @@ namespace GVRPALTV.DatenbankHandling
 
 
             });
+            modelBuilder.Entity<GarageHandler>(entity =>
+            {
+                entity.ToTable("garages");
+
+                entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.name).HasColumnName("name").HasMaxLength(255);
+                entity.Property(e => e.pedpos_x).HasColumnName("pedpos_x");
+                entity.Property(e => e.pedpos_y).HasColumnName("pedpos_y");
+                entity.Property(e => e.pedpos_z).HasColumnName("pedpos_z");
+                entity.Property(e => e.pedheading).HasColumnName("pedheading");
+
+                entity.Property(e => e.spawnpos_x).HasColumnName("spawnpos_x");
+                entity.Property(e => e.spawnpos_y).HasColumnName("spawnpos_y");
+                entity.Property(e => e.spawnpos_z).HasColumnName("spawnpos_z");
+                entity.Property(e => e.spawnheading).HasColumnName("spawnheading");
+                entity.Property(e => e.marker).HasColumnName("marker");
+                entity.Property(e => e.blip).HasColumnName("blip");
+                entity.Property(e => e.fraktion).HasColumnName("fraktion").HasMaxLength(255);
+
+
+
+
+            });
+
+            modelBuilder.Entity<KleidungsladenHandler>(entity =>
+            {
+                entity.ToTable("kleidungsladen");
+
+                entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.name).HasColumnName("name");
+                entity.Property(e => e.pedpos_x).HasColumnName("pedpos_x");
+                entity.Property(e => e.pedpos_y).HasColumnName("pedpos_y");
+                entity.Property(e => e.pedpos_z).HasColumnName("pedpos_z");
+                entity.Property(e => e.pedheading).HasColumnName("pedheading");
+                entity.Property(e => e.blip).HasColumnName("blip");
+                entity.Property(e => e.marker).HasColumnName("marker");
+
+            });
+
+            modelBuilder.Entity<SupermarketHandler>(entity =>
+            {
+                entity.ToTable("supermarket");
+
+                entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.name).HasColumnName("name");
+                entity.Property(e => e.pedpos_x).HasColumnName("pedpos_x");
+                entity.Property(e => e.pedpos_y).HasColumnName("pedpos_y");
+                entity.Property(e => e.pedpos_z).HasColumnName("pedpos_z");
+                entity.Property(e => e.pedheading).HasColumnName("pedheading");
+                entity.Property(e => e.blip).HasColumnName("blip");
+                entity.Property(e => e.marker).HasColumnName("marker");
+
+            });
+
+            modelBuilder.Entity<ItemHandler>(entity =>
+            {
+                entity.ToTable("items");
+                entity.Property(e => e.id).HasColumnName("id");
+
+                entity.Property(e => e.itemId).HasColumnName("itemId");
+                entity.Property(e => e.name).HasColumnName("name").HasMaxLength(255);
+                entity.Property(e => e.label).HasColumnName("label").HasMaxLength(255);
+                entity.Property(e => e.callback).HasColumnName("callback");
+                entity.Property(e => e.limit).HasColumnName("limit");
+                entity.Property(e => e.ablaufdatum).HasColumnName("ablaufdatum");
+                entity.Property(e => e.price).HasColumnName("price");
+                entity.Property(e => e.legal).HasColumnName("legal");
+                entity.Property(e => e.kleidung).HasColumnName("kleidung");
+                entity.Property(e => e.abnehmbar).HasColumnName("abnehmbar");
+
+
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

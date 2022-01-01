@@ -57,5 +57,9 @@ namespace GVRPALTV.DatenbankHandling
         public float pos_Y { get; set; }
         public float pos_Z { get; set; }
 
+        public string clothes { get; set; }
+
+        public string restclothes { get; set; }
+
     }
 }

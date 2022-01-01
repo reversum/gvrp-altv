@@ -14,9 +14,9 @@ using System.Drawing;
 using GVRPALTV.EntitySync;
 using GVRPALTV.DatenbankHandling;
 
-namespace GVRPALTV.Modules.WorkingModule.BurgerShot
+namespace GVRPALTV.Modules.WorkingModule.Muellmann
 {
-    class BurgerShotLivery : IScript
+    class Muellmann : IScript
     {
 
 
@@ -56,7 +56,7 @@ namespace GVRPALTV.Modules.WorkingModule.BurgerShot
                                   .OrderBy(c => Guid.NewGuid())
                                   .Skip(ss).FirstOrDefault();
 
-           await CreateRoute(player, new Position(result.pos_x, result.pos_y, result.pos_z));
+            await CreateRoute(player, new Position(result.pos_x, result.pos_y, result.pos_z));
 
 
         }

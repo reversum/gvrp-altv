@@ -13,7 +13,7 @@ namespace GVRPALTV.Modules.InventoryModule
             public int MaxSlots;
             public int Id;
             public int Money;
-            public IList<string> Slots;
+            public List<Items> Slots;
         
 
         public class Items
@@ -27,6 +27,19 @@ namespace GVRPALTV.Modules.InventoryModule
             public int Id;
             public int Slot;
             public string ImagePath;
+
+            public Items(string label, string name, int quantitye, int MaxStackSizee, int amount, int id, int slot, string imagepath)
+            {
+                Id = id;
+                Name = name;
+                Label = label;
+                quantity = quantitye;
+                MaxStackSize = MaxStackSizee;
+                Amount = amount;
+                Slot = slot;
+                ImagePath = imagepath;
+
+            }
 
 
         }

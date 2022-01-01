@@ -26,8 +26,11 @@ namespace GVRPALTV.VehicleHandling
         public float rotation { get; set; }
         public string tuning { get; set; }
         public bool engine { get; set; } 
-        public bool locked { get; set; } 
+        public bool ingarage { get; set; } 
         public int health { get; set; }
+        public bool locked { get; set; }
+
+        public bool angemeldet { get; set; }
 
         public DBVehicle(IServer server, IntPtr nativePointer, ushort id) : base(server, nativePointer, id)
         {

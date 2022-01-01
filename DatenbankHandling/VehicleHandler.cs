@@ -32,6 +32,8 @@ namespace GVRPALTV.DatenbankHandling
         public bool engine { get; set; }
         public bool locked { get; set; }
         public int health { get; set; }
+        public bool ingarage { get; set; }
+        public bool angemeldet { get; set; }
 
         public static async Task LoadAllVehiclesFromDb()
         {
@@ -39,53 +41,58 @@ namespace GVRPALTV.DatenbankHandling
             foreach (var veh in db.VehicleHandler)
             {
 
-                var spawnableVehicle = await AltAsync.Do(() => Alt.CreateVehicle((uint)veh.hash, new AltV.Net.Data.Position(veh.pos_X, veh.pos_Y, veh.pos_Z), new Rotation(0, 0, veh.rotation)));
-
-                spawnableVehicle.NumberplateText = veh.plate;
-
-                spawnableVehicle.SetVehicleOwner(veh.ownerid);
-                spawnableVehicle.SetVehicleId(veh.id);
-                if (veh.engine)
-                {
-                    spawnableVehicle.EngineOn = true;
-                }
-                else
-                {
-                    spawnableVehicle.EngineOn = false;
-                }
-                if (veh.locked)
-                {
-                    spawnableVehicle.LockState = AltV.Net.Enums.VehicleLockState.Locked;
-                }
-                else
-                {
-                    spawnableVehicle.LockState = AltV.Net.Enums.VehicleLockState.Unlocked;
-
-                }
-                foreach (var fahrzeug in GetAllVehicles())
+                if (!veh.ingarage)
                 {
 
-                    if (fahrzeug.id == veh.id)
+                    var spawnableVehicle = await AltAsync.Do(() => Alt.CreateVehicle((uint)veh.hash, new AltV.Net.Data.Position(veh.pos_X, veh.pos_Y, veh.pos_Z), new Rotation(0, 0, veh.rotation)));
+
+                    spawnableVehicle.NumberplateText = veh.plate;
+
+                    spawnableVehicle.SetVehicleOwner(veh.ownerid);
+                    spawnableVehicle.SetVehicleId(veh.id);
+                    if (veh.engine)
                     {
-                        fahrzeug.id = veh.id;
-                        fahrzeug.name = veh.name;
-                        fahrzeug.plate = veh.plate;
-                        fahrzeug.hash = veh.hash;
-                        fahrzeug.price = veh.price;
-                        fahrzeug.trunk = veh.trunk;
-                        fahrzeug.trunkweight = veh.trunkweight;
-                        fahrzeug.MaxFuel = veh.MaxFuel;
-                        fahrzeug.pos_X = veh.pos_X;
-                        fahrzeug.pos_Y = veh.pos_Y;
-                        fahrzeug.pos_Z = veh.pos_Z;
-                        fahrzeug.rotation = veh.rotation;
-                        fahrzeug.tuning = veh.tuning;
-                        fahrzeug.engine = veh.engine;
-                        fahrzeug.locked = veh.locked;
-                        fahrzeug.health = veh.health;
+                        spawnableVehicle.EngineOn = true;
+                    }
+                    else
+                    {
+                        spawnableVehicle.EngineOn = false;
+                    }
+                    if (veh.locked)
+                    {
+                        spawnableVehicle.LockState = AltV.Net.Enums.VehicleLockState.Locked;
+                    }
+                    else
+                    {
+                        spawnableVehicle.LockState = AltV.Net.Enums.VehicleLockState.Unlocked;
+
+                    }
+                    foreach (var fahrzeug in GetAllVehicles())
+                    {
+
+                        if (fahrzeug.id == veh.id)
+                        {
+                            fahrzeug.id = veh.id;
+                            fahrzeug.name = veh.name;
+                            fahrzeug.plate = veh.plate;
+                            fahrzeug.hash = veh.hash;
+                            fahrzeug.price = veh.price;
+                            fahrzeug.trunk = veh.trunk;
+                            fahrzeug.trunkweight = veh.trunkweight;
+                            fahrzeug.MaxFuel = veh.MaxFuel;
+                            fahrzeug.pos_X = veh.pos_X;
+                            fahrzeug.pos_Y = veh.pos_Y;
+                            fahrzeug.pos_Z = veh.pos_Z;
+                            fahrzeug.rotation = veh.rotation;
+                            fahrzeug.tuning = veh.tuning;
+                            fahrzeug.engine = veh.engine;
+                            fahrzeug.locked = veh.locked;
+                            fahrzeug.health = veh.health;
+                            fahrzeug.angemeldet = veh.angemeldet;
+
+                        }
                     }
                 }
-
             }
         }
         public static IEnumerable<DBVehicle> GetAllVehicles()
@@ -96,6 +103,7 @@ namespace GVRPALTV.DatenbankHandling
         public async Task Pressed_G(DBPlayer player, DBVehicle vehicle)
         {
 
+            if (!player.loggedin) return;
             if(vehicle.GetVehicleOwner() != player.accountid) { return; }
             if (!vehicle.locked)
             {
@@ -116,6 +124,8 @@ namespace GVRPALTV.DatenbankHandling
         [AsyncClientEvent("Pressed_M")]
         public async Task Pressed_M(DBPlayer player, DBVehicle vehicle)
         {
+            if (!player.loggedin) return;
+
             if (vehicle.EngineOn)
             {
                 vehicle.EngineOn = false;

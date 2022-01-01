@@ -32,7 +32,7 @@ namespace GVRPALTV.Modules.InventoryModule
 
 
                 var finishinventory = JsonConvert.SerializeObject(inventory);
-                player.EmitLocked("openWindow", "Inventory", "{\"inventory\":[{\"Name\":\"Inventar\", \"MaxWeight\":4000,\"MaxSlots\":15,\"Id\":1,\"Money\":0,\"Slots\":[]}]}");
+                player.EmitLocked("openWindow", "Inventory", "{\"inventory\":[" + finishinventory + "]}");
 
 
 

@@ -2,6 +2,7 @@
 using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Interactions;
+using GVRPALTV.Modules.NativeMenu;
 using GVRPALTV.Modules.WorkingModule.BurgerShot;
 using GVRPALTV.PlayerHandling;
 using System;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GVRPALTV.Modules.NativeMenu.DialogMigrator;
 
 namespace GVRPALTV.Modules.WorkingModule
 {
@@ -16,9 +18,17 @@ namespace GVRPALTV.Modules.WorkingModule
     {
         public static Position BurgerShotStart = new Position((float)-1178.6505, (float)-891.6528, (float)13.744385);
 
-        [AsyncClientEvent("Pressed_E")]
+        [AsyncClientEvent("action")]
+        public async Task action(DBPlayer player, String text, String data2)
+        {
+         //   Console.WriteLine(text + " | " + data2);
+
+        }
+            [AsyncClientEvent("Pressed_E")]
         public async Task Pressed_E(DBPlayer player)
         {
+            if (!player.loggedin) return;
+
             var interactions = await AltInteractions.FindInteractions(player.Position, 0);
             Console.WriteLine(interactions);
 
@@ -26,7 +36,6 @@ namespace GVRPALTV.Modules.WorkingModule
             {
                 if (interaction.Type == 1 && interaction.Id == 1)
                 {
-                    Console.WriteLine("NEEE");
                     Random rnd = new Random();
                     int trinkgeld = rnd.Next(1, 10);
                     player.minijobcount += 1;

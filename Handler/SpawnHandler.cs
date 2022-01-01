@@ -2,8 +2,11 @@
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using GVRPALTV.DatenbankHandling;
+using GVRPALTV.Modules.ClothingModule;
+using GVRPALTV.Modules.Clothingstoremodule;
 using GVRPALTV.Modules.DeathModule;
 using GVRPALTV.PlayerHandling;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +27,7 @@ namespace GVRPALTV.Handler
                 Console.WriteLine("Fehler! Diesen Benutzer gibt es nicht! | " + player.SocialClubId);
                 return;
             }
-
+            player.loggedin = true;
             player.accountid = dbPlayer.id;
             player.forumid = dbPlayer.forumid;
             player.name = dbPlayer.name;
@@ -57,6 +60,56 @@ namespace GVRPALTV.Handler
             player.fraktion = dbPlayer.fraktion;
             player.fraktion_rank = dbPlayer.fraktion_rank;
 
+            player.clothes = dbPlayer.clothes;
+            player.restclothes = dbPlayer.restclothes;
+
+            if (player.clothes == "" || player.clothes == "[]" || player.clothes == null)
+            {
+                var data = JsonConvert.DeserializeObject<ClothingModule>("{\"Mask\":0}");
+
+                data.Hose = 1;
+                data.HoseColor = 0;
+                data.Mask = 0;
+                data.TShirt = 1;
+                data.TShirtColor = 0;
+                data.Torso = 1;
+                data.TorsoColor = 0;
+                data.Koerper = 0;
+                data.Schuhe = 1;
+                data.SchuheColor = 0;
+
+
+
+
+                var final = JsonConvert.SerializeObject(data);
+                dbPlayer.clothes = final;
+                player.clothes = final;
+                await db.SaveChangesAsync();
+            }
+            if (player.restclothes == "" || player.restclothes == "[]" || player.restclothes == null)
+            {
+                var data = JsonConvert.DeserializeObject<ClothingModule>("{\"Mask\":0}");
+
+                data.Hose = 1;
+                data.HoseColor = 0;
+                data.Mask = 0;
+                data.TShirt = 1;
+                data.TShirtColor = 0;
+                data.Torso = 1;
+                data.TorsoColor = 0;
+                data.Koerper = 0;
+                data.Schuhe = 1;
+                data.SchuheColor = 0;
+
+
+
+
+                var final = JsonConvert.SerializeObject(data);
+                dbPlayer.restclothes = final;
+                player.restclothes = final;
+                await db.SaveChangesAsync();
+            }
+
             player.pos_X = dbPlayer.pos_X;
             player.pos_Y = dbPlayer.pos_Y;
             player.pos_Z = dbPlayer.pos_Z;
@@ -74,6 +127,9 @@ namespace GVRPALTV.Handler
                 player.Emit("reviveden");
 
             }
+
+           await ClothingstoreInteraction.SetClothes(player);
+
 
             //   IVehicle veh = Alt.CreateVehicle(Alt.Hash("revolter"), new AltV.Net.Data.Position(player.Position.X, player.Position.Y, player.Position.Z), player.Rotation);
             //   if (veh != null)

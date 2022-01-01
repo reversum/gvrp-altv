@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace GVRPALTV.DatenbankHandling
 {
     public partial class ItemHandler
     {
+        public int id { get; set; }
 
         public int itemId { get; set; }
         public string name { get; set; }
@@ -26,6 +28,8 @@ namespace GVRPALTV.DatenbankHandling
         public bool kleidung { get; set; }
 
         public bool abnehmbar { get; set; }
+
+
 
 
     }

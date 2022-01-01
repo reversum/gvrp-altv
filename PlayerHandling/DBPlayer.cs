@@ -10,6 +10,9 @@ using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using System.Threading.Tasks;
 using GVRPALTV.EntitySync;
+using GVRPALTV.Modules.InventoryModule;
+using Newtonsoft.Json;
+using GVRPALTV.DatenbankHandling;
 
 namespace GVRPALTV.PlayerHandling
 {
@@ -75,6 +78,11 @@ namespace GVRPALTV.PlayerHandling
         public MarkerManager.Marker minijobmarker { get; set; }
 
 
+        public int clothingzahl { get; set; }
+        public uint WatchMenu { get; set; }
+        public string clothes { get; set; }
+        public string restclothes { get; set; }
+
         public DBPlayer(IServer server, IntPtr nativePointer, ushort id) : base(server, nativePointer, id)
         {
         }
@@ -86,6 +94,60 @@ namespace GVRPALTV.PlayerHandling
         /// <param name="type">1-7</param>
         /// <param name="message"></param>
         /// <param name="duration">in milliseconds</param>
+        /// 
+
+        public async Task RemoveInventoryItem(int id, int count)
+        {
+            using MySQLHandler db = new MySQLHandler();
+            foreach (var items in db.ItemHandler)
+            {
+                if (items.itemId == id)
+                {
+                    var inventory = JsonConvert.DeserializeObject<InventorySettings>(this.inventory);
+
+                    inventory.Slots.Remove(inventory.Slots.ToList().FirstOrDefault(item => (item.Id == id)));
+
+
+                }
+            }
+        }
+                    public async Task AddInventoryItem( int id, int count)
+        {
+            using MySQLHandler db = new MySQLHandler();
+            foreach (var items in db.ItemHandler)
+            {
+                if (items.itemId == id)
+                {
+
+                    var inventory = JsonConvert.DeserializeObject<InventorySettings>(this.inventory);
+
+                    var dbItem = inventory.Slots.ToList().FirstOrDefault(item => (item.Id == id));
+
+                    if (dbItem != null)
+                    {
+
+                        dbItem.quantity = dbItem.quantity + count;
+                        inventory.Slots.Add(new InventorySettings.Items(items.label, items.name, dbItem.quantity, items.limit, 0, items.id, 4, ""));
+
+                        inventory.Slots.Remove(inventory.Slots.ToList().FirstOrDefault(item => (item.Id == id)));
+
+
+                    }
+                    else
+                    {
+
+
+                        inventory.Slots.Add(new InventorySettings.Items(items.label, items.name, count, items.limit, 0, items.id, 4, ""));
+
+                    }
+
+                    var finishinventory = JsonConvert.SerializeObject(inventory);
+
+                    this.inventory = finishinventory;
+                    break;
+                }
+            }
+        }
         public async Task ShowNotification(string message)
         {
             if (!Exists)

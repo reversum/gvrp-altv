@@ -47,8 +47,10 @@ namespace GVRPALTV.Modules.TimerModule
                 dbVehicle.tuning = fahrzeug.tuning;
                 dbVehicle.engine = fahrzeug.EngineOn;
                 dbVehicle.locked = fahrzeug.locked;
+                    dbVehicle.angemeldet = fahrzeug.angemeldet;
+                    dbVehicle.ingarage = fahrzeug.ingarage;
 
-                Alt.Log($"[Vehicle Saved] {fahrzeug.id} | {fahrzeug.plate}");
+                    Alt.Log($"[Vehicle Saved] {fahrzeug.id} | {fahrzeug.plate}");
                 }
             }
 

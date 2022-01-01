@@ -2,6 +2,7 @@
 using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using GVRPALTV.DatenbankHandling;
+using GVRPALTV.Modules.Clothingstoremodule;
 using GVRPALTV.Modules.DeathModule;
 using GVRPALTV.PlayerHandling;
 using System;
@@ -19,6 +20,16 @@ namespace GVRPALTV.Modules.ChatModule
         {
             string[] cmd = command.Split(" ");
 
+            if (cmd[0] == "/nclothing")
+            {
+
+                await ClothingstoreInteraction.SetNebenClothes(player);
+            }
+            if (cmd[0] == "/hclothing")
+            {
+
+                await ClothingstoreInteraction.SetClothes(player);
+            }
             if (cmd[0] == "/pos")
             {
                 player.Position = new AltV.Net.Data.Position(Int32.Parse(cmd[1]), Int32.Parse(cmd[2]), Int32.Parse(cmd[3]));

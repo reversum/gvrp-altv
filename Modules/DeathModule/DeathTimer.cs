@@ -27,7 +27,7 @@ namespace GVRPALTV.Modules.DeathModule
 
                     if (player.deathtime == 0 || player.deathtime < 0)
                     {
-                        KillPlayer.revivePlayer(player);
+                        await KillPlayer.revivePlayer(player);
 
                         await Task.Delay(100);
 

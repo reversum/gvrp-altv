@@ -33,7 +33,7 @@ namespace GVRPALTV.DatenbankHandling
                 posX = blip.pos_x,
                 posY = blip.pos_y,
                 posZ = blip.pos_z,
-                shortRange = blip.shortrange,
+                shortRange = blip.shortrange, //sex
                 sprite = blip.sprite
             }).ToList();
             return JsonConvert.SerializeObject(blipList);

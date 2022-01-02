@@ -97,10 +97,10 @@ namespace GVRPALTV.Handler
 
 
             using MySQLHandler db = new MySQLHandler();
-            var dbPlayer = db.PlayerCharacter.ToList().FirstOrDefault(account => (account.socialclub == player.SocialClubId));
+            var dbPlayer = db.PlayerCharacter.ToList().FirstOrDefault(account => (account.name == player.Name));
             if (dbPlayer == null)
             {
-                Console.WriteLine("Fehler! Diesen Benutzer gibt es nicht! | " + player.SocialClubId);
+                Console.WriteLine("Fehler! Diesen Benutzer gibt es nicht! | " + player.Name);
                 return;
             }
 
@@ -117,6 +117,7 @@ namespace GVRPALTV.Handler
 
                 if (dbPlayer.password == pass)
             {
+                player.socialclub = player.SocialClubId;
                 player.EmitLocked("status", "successfully");
                 player.EmitLocked("closeWindow");
                 player.EmitLocked("backtonormal");//SS

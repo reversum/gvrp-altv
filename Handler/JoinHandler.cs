@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,10 +41,14 @@ namespace GVRPALTV.Handler
 
             using MySQLHandler db = new MySQLHandler();
             
-            var dbPlayer = db.PlayerCharacter.ToList().FirstOrDefault(account => (account.socialclub == player.SocialClubId));
+            var dbPlayer = db.PlayerCharacter.ToList().FirstOrDefault(account => (account.name == player.Name));
             if (dbPlayer == null)
             {
-                Console.WriteLine("Fehler! Diesen Benutzer gibt es nicht! | " + player.SocialClubId);
+                Console.WriteLine("Fehler! Diesen Benutzer gibt es nicht! | " + player.Name);
+                lock (player)
+                {
+                     player.Kick("Dein Account wurde nicht gefunden! Namen in den AltV Settings geändert?");
+                }
                 return;
             }
 
@@ -106,8 +111,11 @@ namespace GVRPALTV.Handler
                     return;
                 }
             }
+            var pass2 = dbPlayer.password;
+            var pass = ComputeSha256Hash(password);
 
-            if (dbPlayer.password == password)
+
+                if (dbPlayer.password == pass)
             {
                 player.EmitLocked("status", "successfully");
                 player.EmitLocked("closeWindow");
@@ -143,5 +151,22 @@ namespace GVRPALTV.Handler
             }
 
         }
-    }
+            static string ComputeSha256Hash(string rawData)
+            {
+                // Create a SHA256   
+                using (SHA256 sha256Hash = SHA256.Create())
+                {
+                    // ComputeHash - returns byte array  
+                    byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                    // Convert byte array to a string   
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < bytes.Length; i++)
+                    {
+                        builder.Append(bytes[i].ToString("x2"));
+                    }
+                    return builder.ToString();
+                }
+            }
+        }
 }

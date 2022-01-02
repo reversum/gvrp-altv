@@ -35,7 +35,7 @@ namespace GVRPALTV.DatenbankHandling
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("server=localhost;database=altv;user=root;ConvertZeroDateTime=True", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.22-mysql"));
+                optionsBuilder.UseMySql("Server=45.131.108.38;database=altv;Uid=altxd;Pwd=9w9X4oiIqJ3CuOc;ConvertZeroDateTime=True", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.22-mysql"));
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

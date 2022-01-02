@@ -19,6 +19,7 @@
     </ItemGroup>
     
     <ItemGroup>
+      <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="System.Console" Version="4.3.1" />
     </ItemGroup>
@@ -44,6 +45,9 @@
       </Reference>
       <Reference Include="Humanizer">
         <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Humanizer.dll</HintPath>
+      </Reference>
+      <Reference Include="Lidgren.Network">
+        <HintPath>..\..\..\..\Desktop\gvrppng\Logo\VMP_CNR\VMP_CNR\Dependencies\Lidgren.Network.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.EntityFrameworkCore">
         <HintPath>..\..\..\..\Desktop\Altvxd\resources\gvrp\net5.0\Microsoft.EntityFrameworkCore.dll</HintPath>

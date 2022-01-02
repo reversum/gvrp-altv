@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "nMy+ZkO4rstfX4tgMWWd2rJgHg2QvgmXAY717XUm5Es+CqrUkMaGzBG1JKgNGY+VpVCgudpjIX30JnoYGkbePA==",
+  "dgSpecHash": "E2ckF9xrGtxkcx2x53iJ/9px/hDXDJbYycntTTuR/Nl8742qugGX9OOLsnHt00mfQgde9M0TWJqgVrtaKo6sOQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\paypa\\source\\repos\\GVRPALTV\\GVRPALTV\\GVRPALTV.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\paypa\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\paypa\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\paypa\\.nuget\\packages\\microsoft.netcore.targets\\1.1.2\\microsoft.netcore.targets.1.1.2.nupkg.sha512",
     "C:\\Users\\paypa\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",

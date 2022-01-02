@@ -40,7 +40,7 @@ namespace GVRPALTV
         }
         public override void OnStart()
         {
-            Logger.Logger.info("Server wurde gestartet! Rofl");
+            Logger.Logger.info("Server wurde gestartet!");
 
 
             Console.WriteLine("AHH");

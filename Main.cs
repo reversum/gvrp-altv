@@ -43,7 +43,7 @@ namespace GVRPALTV
             Logger.Logger.info("Server wurde gestartet! Rofl");
 
 
-
+            Console.WriteLine("AHH");
             AltEntitySync.Init(5, (syncrate) => 200, (threadId) => false,
     (threadCount, repository) => new ServerEventNetworkLayer(threadCount, repository),
     (entity, threadCount) => entity.Type,

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GVRPALTV.Modules.WorkingModule.Muellmann;
 using static GVRPALTV.Modules.NativeMenu.DialogMigrator;
 
 namespace GVRPALTV.Modules.WorkingModule
@@ -24,7 +25,19 @@ namespace GVRPALTV.Modules.WorkingModule
          //   Console.WriteLine(text + " | " + data2);
 
         }
-            [AsyncClientEvent("Pressed_E")]
+
+        [AsyncClientEvent("garbageisgay")]
+        public async Task garbageisgay(DBPlayer player)
+        {
+            player.minijobblip.Remove();
+            player.minijobmarker.Destroy();
+
+
+            AltInteractions.RemoveInteraction(player.minijobinteraction);
+            await Muellmann.Muellmann.ChooseRoute(player);
+
+        }
+        [AsyncClientEvent("Pressed_E")]
         public async Task Pressed_E(DBPlayer player)
         {
             if (!player.loggedin) return;
@@ -58,6 +71,28 @@ namespace GVRPALTV.Modules.WorkingModule
                     }
                     //Burgershot
 
+                }
+                if (interaction.Type == 1 && interaction.Id == 2)
+                {
+                     player.Emit("checkforgarbage", player.minijobveh);
+                    player.minijobinteraction = interaction;
+                    //Müllmann
+
+                }
+                if (interaction.Type == 0 && interaction.Id == 32)
+                {
+                    if (player.currentminijob == "trash" && player.minijobactive)
+                    {
+                        await player.ShowAdvancedNotification("~r~Du arbeitest doch bereits hier! Arbeite deine Route ab!", 0, "Los-Santos Garbage", "Job-Benachrichtigung", "CHAR_JIMMY_BOSTON", null, 1);
+                    }
+                    else
+                    {
+                        player.currentminijob = "trash";
+                        player.minijobactive = true;
+                        await Muellmann.Muellmann.StartJob(player);
+                        await player.ShowAdvancedNotification("~s~Guten Tag, fahr die Route ab und sammle alle Mülltüten ein!", 0, "Los-Santos Garbage", "Job-Benachrichtigung", "CHAR_JIMMY_BOSTON", null, 1);
+
+                    }
                 }
                 if (interaction.Type == 0 && interaction.Id == 31)
                 {

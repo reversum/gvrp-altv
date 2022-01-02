@@ -13,6 +13,7 @@ using GVRPALTV.EntitySync;
 using GVRPALTV.Modules.InventoryModule;
 using Newtonsoft.Json;
 using GVRPALTV.DatenbankHandling;
+using AltV.Net.Interactions;
 
 namespace GVRPALTV.PlayerHandling
 {
@@ -75,6 +76,9 @@ namespace GVRPALTV.PlayerHandling
         public int minijobmax { get; set; }
 
         public IBlip minijobblip { get; set; }
+        public IInteraction minijobinteraction { get; set; }
+
+        public IVehicle minijobveh { get; set; }
         public MarkerManager.Marker minijobmarker { get; set; }
 
 

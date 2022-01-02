@@ -36,6 +36,8 @@ namespace GVRPALTV.Modules.WorkingModule.Muellmann
 
             spawnableVehicle.EngineOn = false;
 
+            player.minijobveh = spawnableVehicle;
+
 
 
             spawnableVehicle.LockState = AltV.Net.Enums.VehicleLockState.Locked;
@@ -49,7 +51,7 @@ namespace GVRPALTV.Modules.WorkingModule.Muellmann
 
             using MySQLHandler db = new MySQLHandler();
             Random random = new Random();
-            int ss = random.Next(1, 40);
+            int ss = random.Next(1, 19);
             var result = db.MiniJobDeliveryHandler
                                   .Where(c => c.jobname == player.currentminijob)
 
@@ -62,7 +64,7 @@ namespace GVRPALTV.Modules.WorkingModule.Muellmann
         }
         public static async Task CreateRoute(DBPlayer player, Position position)
         {
-            AltInteractions.AddInteraction(new Interaction(1, 2, position, 0, 2));
+            AltInteractions.AddInteraction(new Interaction(1, 2, position, 0, 12));
             var blip = player.Server.CreateBlip(player, 4, position);
             blip.Color = 81;
             blip.Route = true;
@@ -72,8 +74,8 @@ namespace GVRPALTV.Modules.WorkingModule.Muellmann
 
             var marker = MarkerManager.MarkerStreamer.Create(1,
 position,
-new Vector3(1, 1, 1), null, null,
-new Rgba((byte)255, (byte)136, (byte)0, (byte)100), 0, false);
+new Vector3(0, 0, 0), null, null,
+new Rgba((byte)255, (byte)255, (byte)255, (byte)255), 0, false);
 
             player.minijobmarker = marker;
 

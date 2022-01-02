@@ -119,7 +119,7 @@ namespace GVRPALTV.Handler
             {
                 player.EmitLocked("status", "successfully");
                 player.EmitLocked("closeWindow");
-                player.EmitLocked("backtonormal");
+                player.EmitLocked("backtonormal");//SS
 
                 await player.SetVisibleAsync(true);
                 

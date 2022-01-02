@@ -117,7 +117,10 @@ namespace GVRPALTV.Handler
 
                 if (dbPlayer.password == pass)
             {
+                dbPlayer.socialclub = player.SocialClubId;
                 player.socialclub = player.SocialClubId;
+                db.SaveChanges();
+
                 player.EmitLocked("status", "successfully");
                 player.EmitLocked("closeWindow");
                 player.EmitLocked("backtonormal");//SS
